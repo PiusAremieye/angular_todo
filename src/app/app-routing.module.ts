@@ -5,6 +5,7 @@ import { SignupComponent } from './authentication/signup.component';
 import { IndexComponent } from './index/index.component';
 import { TodosComponent } from './todos/todos.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,12 @@ const routes: Routes = [
     data: { title: 'Todo' },
     canActivate: [AuthGuard],
   },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+    data: { title: 'Not Found' },
+  },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({

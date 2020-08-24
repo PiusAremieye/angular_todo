@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         () => {
-          this.router.navigate(['/todos']);
+          this.router.navigateByUrl('/todos');
         },
         (error) => {
           this.errorMessage = error;

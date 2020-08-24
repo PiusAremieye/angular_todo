@@ -13,6 +13,7 @@ export class SignupComponent implements OnInit {
   authForm: FormGroup;
   errorMessage: string;
   isSubmitted = false;
+
   constructor(
     private router: Router,
     private authService: AuthenticationService,
@@ -45,7 +46,7 @@ export class SignupComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('Account created!');
-          this.router.navigate(['/auth/login']);
+          this.router.navigateByUrl('/auth/login');
         },
         (error) => {
           this.errorMessage = error;

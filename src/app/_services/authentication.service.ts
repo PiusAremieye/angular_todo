@@ -6,6 +6,7 @@ import { User } from '../_models/user';
 import { JwtResponse } from '../_models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class AuthenticationService {
   private authSubject: BehaviorSubject<Boolean>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.authSubject = new BehaviorSubject<Boolean>(false);
   }
 
@@ -61,5 +62,6 @@ export class AuthenticationService {
     localStorage.removeItem('Token');
     localStorage.removeItem('User_details');
     this.authSubject.next(false);
+    this.router.navigate(['/']);
   }
 }

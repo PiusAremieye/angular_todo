@@ -10,6 +10,7 @@ import { LoginComponent } from './authentication/login.component';
 import { IndexComponent } from './index/index.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TodosComponent } from './todos/todos.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TodosComponent } from './todos/todos.component';
     IndexComponent,
     NavbarComponent,
     TodosComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
