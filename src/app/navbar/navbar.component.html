@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md navbar-dark dark py-4">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Classic Todo</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#mobile-nav"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mobile-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-light" routerLink="auth/login" mdbWavesEffect
+            >Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link waves-light"
+            routerLink="auth/signup"
+            mdbWavesEffect
+            >Sign Up</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

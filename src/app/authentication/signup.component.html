@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="row py-5 px-3">
+    <div class="col-lg-6 col-md-9 col-sm-12 m-auto card p-4">
+      <h3 class="diaplay-4 text-center black-text">Signup here</h3>
+      <br />
+      <p *ngIf="errorMessage" class="red-text text-center m-0 py-2">
+        {{ errorMessage }}
+      </p>
+      <form
+        [formGroup]="authForm"
+        class="register-form"
+        (ngSubmit)="register()"
+      >
+        <div class="md-form">
+          <p
+            [ngClass]="{
+              'has-error': isSubmitted && formControls.name.errors
+            }"
+          >
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              formControlName="name"
+              placeholder="Full Name"
+            />
+          </p>
+          <div
+            *ngIf="isSubmitted && formControls.name.errors"
+            class="error-block"
+          >
+            <div *ngIf="formControls.name.errors.required" class="red-text">
+              Full name is required
+            </div>
+          </div>
+        </div>
+        <div class="md-form">
+          <p
+            [ngClass]="{
+              'has-error': isSubmitted && formControls.email.errors
+            }"
+          >
+            <input
+              type="email"
+              class="form-control form-control-lg"
+              formControlName="email"
+              placeholder="Email"
+            />
+          </p>
+          <div
+            *ngIf="isSubmitted && formControls.email.errors"
+            class="error-block"
+          >
+            <div *ngIf="formControls.email.errors.required" class="red-text">
+              Email is required
+            </div>
+          </div>
+        </div>
+        <div class="md-form">
+          <p
+            [ngClass]="{
+              'has-error': isSubmitted && formControls.password.errors
+            }"
+          >
+            <input
+              type="password"
+              class="form-control form-control-lg"
+              formControlName="password"
+              placeholder="Password"
+            />
+          </p>
+          <div
+            *ngIf="isSubmitted && formControls.password.errors"
+            class="error-block"
+          >
+            <div *ngIf="formControls.password.errors.required" class="red-text">
+              Password is required
+            </div>
+          </div>
+        </div>
+        <div class="md-form">
+          <p
+            [ngClass]="{
+              'has-error':
+                isSubmitted && formControls.password_confirmation.errors
+            }"
+          >
+            <input
+              type="password"
+              class="form-control form-control-lg"
+              formControlName="password_confirmation"
+              placeholder="Confirm Password"
+            />
+          </p>
+          <div
+            *ngIf="isSubmitted && formControls.password_confirmation.errors"
+            class="error-block"
+          >
+            <div
+              *ngIf="formControls.password_confirmation.errors.required"
+              class="red-text"
+            >
+              Confirm Password is required
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-lg-6 col-md-6">
+            <input
+              type="submit"
+              value="Create Account"
+              class="btn btn-lg btn-block btn-success"
+            />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-8 py-3 p-0">
+            <p class="grey-text m-0 text-center">
+              Already have an account?<a
+                class="blue-text ml-1"
+                routerLink="/auth/login"
+                >login</a
+              >
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
