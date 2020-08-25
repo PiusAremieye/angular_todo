@@ -1,33 +1,34 @@
 <div class="container">
-  <h3 class="pt-2">Welcome {{ user.name }}</h3>
+  <h3>Todo is {{ todo.title }}</h3>
   <div class="row py-3">
     <div class="col-lg-6 col-md-9 col-sm-12">
       <p *ngIf="errorMessage" class="red-text text-center m-0 py-2">
         {{ errorMessage }}
       </p>
-      <form [formGroup]="todoForm" class="todo-form" (ngSubmit)="addTodo()">
+      <form [formGroup]="itemForm" class="item-form" (ngSubmit)="addItem()">
         <div class="md-form m-0">
           <p
             [ngClass]="{
-              'has-error': isSubmitted && formControls.title.errors
+              'has-error': isSubmitted && formControls.name.errors
             }"
           >
             <input
               type="text"
               class="form-control form-control-lg white-text"
-              formControlName="title"
-              placeholder="Add todo"
+              formControlName="name"
+              placeholder="Add item to this todo"
             />
           </p>
           <div
-            *ngIf="isSubmitted && formControls.title.errors"
+            *ngIf="isSubmitted && formControls.name.errors"
             class="error-block"
           >
-            <div *ngIf="formControls.title.errors.required" class="red-text">
-              Title is required
+            <div *ngIf="formControls.name.errors.required" class="red-text">
+              Name of todo item is required
             </div>
           </div>
         </div>
+        <input type="hidden" formControlName="done" value="false" />
         <div class="row d-flex pt-2">
           <div class="col-4">
             <input
@@ -36,46 +37,42 @@
               value="Add"
             />
           </div>
-          <!-- <div class="col-4">
-            <input
-              type="reset"
-              class="btn btn-lg btn-success btn-block"
-              value="Clear"
-            />
-          </div> -->
         </div>
       </form>
     </div>
   </div>
 
-  <!-- list of todos -->
+  <!-- list of todo items -->
   <div class="py-5">
-    <div *ngIf="todosLen < 1" class="py-3">
-      <h4>No todo</h4>
+    <a routerLink="/todos" class="btn btn-primary mr-2">Back to home</a>
+    <div *ngIf="itemsLen < 1" class="py-3">
+      <h4>No todo items for this todo</h4>
     </div>
-    <div *ngIf="todosLen >= 1" class="py-3">
-      <button (click)="refreshTodos()" class="btn btn-primary">
+    <div *ngIf="itemsLen >= 1" class="py-3">
+      <button (click)="refreshItems()" class="btn btn-primary">
         Refresh <em class="fas fa-sync-alt"></em>
       </button>
-      <h4 id="mytable" class="py-3">List of todos</h4>
+      <h4 id="mytable" class="py-3">List of todo items</h4>
       <table aria-describedby="mytable" class="table">
         <thead>
           <tr>
-            <th scope="col">Title</th>
+            <th scope="col">Name</th>
+            <th scope="col">Completed</th>
             <th scope="col">Date</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let todo of todos">
-            <td>{{ todo.title }}</td>
-            <td>{{ todo.created_at }}</td>
+          <tr *ngFor="let item of items">
+            <td>{{ item.name }}</td>
+            <td>{{ item.done }}</td>
+            <td>{{ item.created_at }}</td>
             <td style="white-space: nowrap;">
-              <a routerLink="{{ todo.id }}/items" class="btn btn-primary mr-2"
+              <a routerLink="{{ todo.id }}/items" class="btn btn-primary mr-1"
                 >View</a
               >
               <button
-                (click)="deleteTodo(todo.id)"
+                (click)="deleteTodo(todo.id, item.id)"
                 class="btn btn-danger btn-delete-user"
                 [disabled]="todo.isDeleting"
               >

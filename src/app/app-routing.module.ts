@@ -6,6 +6,7 @@ import { IndexComponent } from './index/index.component';
 import { TodosComponent } from './todos/todos.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TodoItemsComponent } from './todo-items/todo-items.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,12 @@ const routes: Routes = [
     path: 'todos',
     component: TodosComponent,
     data: { title: 'Todo' },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'todos/:id/items',
+    component: TodoItemsComponent,
+    data: { title: 'Todo-items' },
     canActivate: [AuthGuard],
   },
   {

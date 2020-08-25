@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
@@ -12,18 +12,22 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private activeRoute: ActivatedRoute
   ) {
+    this.activeRoute.paramMap.subscribe((params) => {
+      this.ngOnInit();
+    });
+  }
+
+  ngOnInit(): void {
     const auth = this.authService.userValue;
-    console.log(auth);
     if (auth) {
       this.authNavbar = true;
     } else {
       this.authNavbar = false;
     }
   }
-
-  ngOnInit(): void {}
 
   logout() {
     this.authService.logout();

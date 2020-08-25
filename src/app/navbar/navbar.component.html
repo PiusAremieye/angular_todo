@@ -14,40 +14,39 @@
     </button>
 
     <!-- not authenticated -->
-    <div *ngIf="!authNavbar">
-      <div class="collapse navbar-collapse" id="mobile-nav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a
-              class="nav-link waves-light"
-              routerLink="auth/login"
-              mdbWavesEffect
-              >Login</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link waves-light"
-              routerLink="auth/signup"
-              mdbWavesEffect
-              >Sign Up</a
-            >
-          </li>
-        </ul>
-      </div>
+    <div *ngIf="!authNavbar" class="collapse navbar-collapse" id="mobile-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link waves-light white-text"
+            routerLink="auth/login"
+            mdbWavesEffect
+            >Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link waves-light white-text"
+            routerLink="auth/signup"
+            mdbWavesEffect
+            >Sign Up</a
+          >
+        </li>
+      </ul>
     </div>
 
     <!-- if authenticated -->
-    <div *ngIf="authNavbar">
-      <div class="collapse navbar-collapse" id="mobile-nav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect (click)="logout()"
-              >logout</a
-            >
-          </li>
-        </ul>
-      </div>
+    <div *ngIf="authNavbar" class="collapse navbar-collapse" id="mobile-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link waves-light white-text"
+            mdbWavesEffect
+            (click)="logout()"
+            >logout</a
+          >
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
